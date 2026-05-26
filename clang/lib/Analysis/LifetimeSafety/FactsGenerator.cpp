@@ -961,11 +961,18 @@ void FactsGenerator::handleFunctionCall(const Expr *Call,
           ArgList->peelOuterOrigin()->getOuterOriginID(), KillSrc));
       KillSrc = false;
     } else if (IsArgLifetimeBound(I)) {
-      // Lifetimebound on a non-GSL-ctor function means the returned
-      // pointer/reference itself must not outlive the arguments. This
-      // only constraints the top-level origin.
-      CurrentBlockFacts.push_back(FactMgr.createFact<OriginFlowFact>(
-          CallList->getOuterOriginID(), ArgList->getOuterOriginID(), KillSrc));
+      if (isStdReferenceCast(FD)) {
+        // e.g., std::move(p): the result refers to the same object as p, so
+        // flow inner origins too.
+        flow(CallList, ArgList, KillSrc);
+      } else {
+        // Lifetimebound on a non-GSL-ctor function means the returned
+        // pointer/reference itself must not outlive the arguments. This
+        // only constrains the top-level origin.
+        CurrentBlockFacts.push_back(FactMgr.createFact<OriginFlowFact>(
+            CallList->getOuterOriginID(), ArgList->getOuterOriginID(),
+            KillSrc));
+      }
       KillSrc = false;
     }
   }
