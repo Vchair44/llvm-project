@@ -104,6 +104,7 @@
 #include "llvm/Transforms/Scalar/InstSimplifyPass.h"
 #include "llvm/Transforms/Scalar/JumpTableToSwitch.h"
 #include "llvm/Transforms/Scalar/JumpThreading.h"
+#include "llvm/Transforms/Scalar/LCM.h"
 #include "llvm/Transforms/Scalar/LICM.h"
 #include "llvm/Transforms/Scalar/LoopDeletion.h"
 #include "llvm/Transforms/Scalar/LoopDistribute.h"
@@ -207,6 +208,11 @@ static cl::opt<bool> ExtraVectorizerPasses(
 static cl::opt<bool> RunNewGVN("enable-newgvn", cl::init(false), cl::Hidden,
                                cl::desc("Run the NewGVN pass"));
 
+static cl::opt<bool> UseLCM(
+    "use-lcm",
+    cl::desc("Use Lazy Code Motion instead of GVN-PRE for partial redundancy elimination"),
+    cl::init(false));
+  
 static cl::opt<bool>
     EnableLoopInterchange("enable-loopinterchange", cl::init(false), cl::Hidden,
                           cl::desc("Enable the LoopInterchange Pass"));
@@ -313,12 +319,13 @@ static cl::opt<bool> EnableDevirtualizeSpeculatively(
     "enable-devirtualize-speculatively",
     cl::desc("Enable speculative devirtualization optimization"),
     cl::init(false));
-
+  
 extern cl::opt<std::string> UseCtxProfile;
 extern cl::opt<bool> PGOInstrumentColdFunctionOnly;
 
 extern cl::opt<bool> EnableMemProfContextDisambiguation;
 } // namespace llvm
+
 
 PipelineTuningOptions::PipelineTuningOptions() {
   LoopInterleaving = true;
@@ -744,7 +751,15 @@ PassBuilder::buildFunctionSimplificationPipeline(OptimizationLevel Level,
 
   // Eliminate redundancies.
   FPM.addPass(MergedLoadStoreMotionPass());
-  if (RunNewGVN)
+
+  
+  if (UseLCM) {
+    FPM.addPass(LCMPass());
+    FPM.addPass(GVNPass(GVNOptions().setMemDep(true)
+                                    .setPRE(false)
+                                    .setLoadInLoopPRE(false)
+                                    .setLoadPRE(false)));
+  } else if (RunNewGVN)
     FPM.addPass(NewGVNPass());
   else
     FPM.addPass(GVNPass());
@@ -2199,8 +2214,13 @@ PassBuilder::buildLTODefaultPipeline(OptimizationLevel Level,
       LICMPass(PTO.LicmMssaOptCap, PTO.LicmMssaNoAccForPromotionCap,
                /*AllowSpeculation=*/true),
       /*USeMemorySSA=*/true));
-
-  if (RunNewGVN)
+  if (UseLCM){
+    MainFPM.addPass(LCMPass());
+    MainFPM.addPass(GVNPass(GVNOptions().setMemDep(true)
+                                        .setPRE(false)
+                                        .setLoadInLoopPRE(false)
+                                        .setLoadPRE(false)));
+  } else if (RunNewGVN)
     MainFPM.addPass(NewGVNPass());
   else
     MainFPM.addPass(GVNPass());
