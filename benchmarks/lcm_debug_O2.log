@@ -1,0 +1,349 @@
+[LCM] Running on function: test_T1_full_redundancy
+[LCM] NEW  :   %y = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %y = add i32 %b, %a
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T2_licm
+[LCM] Found 0 candidate expressions
+[LCM] No candidate expressions found, skipping
+[LCM] Running on function: test_T3_partial_redundancy
+[LCM] NEW  :   %z = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %z = add i32 %b, %a
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T4_no_redundancy
+[LCM] NEW  :   %common.ret.op = add i32 %common.ret.op.v, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 0
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %common.ret.op = add i32 %common.ret.op.v, %b
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T5_route0_route1
+[LCM] Found 0 candidate expressions
+[LCM] No candidate expressions found, skipping
+[LCM] Running on function: test_T6_multiple_exprs
+[LCM] NEW  :   %cd2 = add i32 %b, %a -> VN 2
+[LCM] NEW  :   %ab2 = add i32 %cd2, %c -> VN 4
+[LCM] NEW  :   %result = add i32 %ab2, %d -> VN 6
+[LCM] Found 3 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 111
+[LCM]   TRANSP: 100
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  111
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 111
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 111
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 111
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   111
+[LCM]   REPLACE:  000
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %cd2 = add i32 %b, %a
+[LCM] INSERT+REPLACE (keep) expr 1 in entry:   %ab2 = add i32 %cd2, %c
+[LCM] INSERT+REPLACE (keep) expr 2 in entry:   %result = add i32 %ab2, %d
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T7_nested_exprs
+[LCM] NEW  :   %s1 = add i32 %c, %b -> VN 2
+[LCM] NEW  :   %s2 = add i32 %s1, %d -> VN 4
+[LCM] Found 2 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 11
+[LCM]   TRANSP: 10
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  11
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 11
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 11
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 00
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 11
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %s1 = add i32 %c, %b
+[LCM] INSERT+REPLACE (keep) expr 1 in entry:   %s2 = add i32 %s1, %d
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T8_commutative
+[LCM] NEW  :   %q = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %q = add i32 %b, %a
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T9_phi_kills_transp
+[LCM] Found 0 candidate expressions
+[LCM] No candidate expressions found, skipping
+[LCM] Running on function: test_T10_available_at_entry
+[LCM] NEW  :   %first = add i32 %b, %a -> VN 2
+[LCM] NEW  :   %result = shl i32 %first, 1 -> VN 4
+[LCM] Found 2 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 11
+[LCM]   TRANSP: 10
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  11
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 11
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 11
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 00
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 11
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %first = add i32 %b, %a
+[LCM] INSERT+REPLACE (keep) expr 1 in entry:   %result = shl i32 %first, 1
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T11_cmp_expr
+[LCM] NEW  :   %c2 = icmp slt i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %c2 = icmp slt i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T12_multiple_replace_sites
+[LCM] NEW  :   %p = add i32 %b, %a -> VN 2
+[LCM] NEW  :   %common.ret.op = add i32 %p, %common.ret.op.v -> VN 4
+[LCM] Found 2 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 11
+[LCM]   TRANSP: 10
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  11
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 11
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 11
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 00
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 11
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %p = add i32 %b, %a
+[LCM] INSERT+REPLACE (keep) expr 1 in entry:   %common.ret.op = add i32 %p, %common.ret.op.v
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T13_isolated
+[LCM] NEW  :   %x = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %x = add i32 %b, %a
+[LCM] --- REPLACE candidates ---
+[LCM] Running on function: test_T14_chain_redundancy
+[LCM] NEW  :   %v3 = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %v3 = add i32 %b, %a
+[LCM] --- REPLACE candidates ---

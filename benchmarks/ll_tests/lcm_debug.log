@@ -1,0 +1,1577 @@
+[LCM] Running on function: test_T1_full_redundancy
+[LCM] NEW  :   %x = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %y = add i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: left
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: right
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: merge
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: merge
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: left
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: right
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: merge
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: left
+[LCM]   EARLIEST: 0
+[LCM] Block: right
+[LCM]   EARLIEST: 0
+[LCM] Block: merge
+[LCM]   EARLIEST: 0
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] Block: left
+[LCM]   DELAY: 0
+[LCM] Block: right
+[LCM]   DELAY: 0
+[LCM] Block: merge
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] Block: left
+[LCM]   LATEST: 0
+[LCM] Block: right
+[LCM]   LATEST: 0
+[LCM] Block: merge
+[LCM]   LATEST: 0
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: left
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: right
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: merge
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  1
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %x = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM]   expr 0 in block merge INSERT=0
+[LCM] REPLACE expr 0 in merge:   %y = add i32 %a, %b  ->    %x = add i32 %a, %b
+[LCM] Running on function: test_T2_licm
+[LCM] PHI  :   %i = phi i32 [ 0, %entry ], [ %i.next, %loop.latch ] -> VN 0
+[LCM] NEW  :   %done = icmp sge i32 %i, %n -> VN 2
+[LCM] NEW  :   %inv = add i32 %a, %b -> VN 5
+[LCM] NEW  :   %i.next = add i32 %i, 1 -> VN 7
+[LCM] Found 3 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] Block: loop.header
+[LCM]   ANTLOC: 100
+[LCM]   TRANSP: 010
+[LCM] Block: loop.body
+[LCM]   ANTLOC: 011
+[LCM]   TRANSP: 111
+[LCM] Block: loop.latch
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] Block: exit
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  100
+[LCM] Block: loop.header
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  100
+[LCM] Block: loop.body
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  111
+[LCM] Block: loop.latch
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  100
+[LCM] Block: exit
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  000
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 000
+[LCM] Block: loop.header
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 100
+[LCM] Block: loop.body
+[LCM]   AVIN:  100
+[LCM]   AVOUT: 111
+[LCM] Block: loop.latch
+[LCM]   AVIN:  111
+[LCM]   AVOUT: 111
+[LCM] Block: exit
+[LCM]   AVIN:  100
+[LCM]   AVOUT: 100
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 100
+[LCM] Block: loop.header
+[LCM]   EARLIEST: 100
+[LCM] Block: loop.body
+[LCM]   EARLIEST: 011
+[LCM] Block: loop.latch
+[LCM]   EARLIEST: 000
+[LCM] Block: exit
+[LCM]   EARLIEST: 000
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 100
+[LCM] Block: loop.header
+[LCM]   DELAY: 000
+[LCM] Block: loop.body
+[LCM]   DELAY: 000
+[LCM] Block: loop.latch
+[LCM]   DELAY: 000
+[LCM] Block: exit
+[LCM]   DELAY: 000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 100
+[LCM] Block: loop.header
+[LCM]   LATEST: 100
+[LCM] Block: loop.body
+[LCM]   LATEST: 011
+[LCM] Block: loop.latch
+[LCM]   LATEST: 000
+[LCM] Block: exit
+[LCM]   LATEST: 000
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   100
+[LCM]   REPLACE:  000
+[LCM] Block: loop.header
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   100
+[LCM]   REPLACE:  000
+[LCM] Block: loop.body
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   011
+[LCM]   REPLACE:  000
+[LCM] Block: loop.latch
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   000
+[LCM]   REPLACE:  000
+[LCM] Block: exit
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   000
+[LCM]   REPLACE:  000
+[LCM] INSERT+REPLACE (keep) expr 0 in loop.header:   %done = icmp sge i32 %i, %n
+[LCM] INSERT+REPLACE (keep) expr 1 in loop.body:   %inv = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 2 in loop.body:   %i.next = add i32 %i, 1
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in loop.header: SKIP — value not available on all edges
+[LCM] REPLACE expr 1 in loop.body: SKIP — value not available on all edges
+[LCM] REPLACE expr 2 in loop.body: SKIP — value not available on all edges
+[LCM] Running on function: test_T3_partial_redundancy
+[LCM] NEW  :   %y = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %z = add i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: left
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: left.merge_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: right
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: right.merge_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: merge
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left.merge_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right.merge_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: merge
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: left
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: left.merge_crit
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: right
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: right.merge_crit
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: merge
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: left
+[LCM]   EARLIEST: 1
+[LCM] Block: left.merge_crit
+[LCM]   EARLIEST: 1
+[LCM] Block: right
+[LCM]   EARLIEST: 1
+[LCM] Block: right.merge_crit
+[LCM]   EARLIEST: 0
+[LCM] Block: merge
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 1
+[LCM] Block: left
+[LCM]   DELAY: 1
+[LCM] Block: left.merge_crit
+[LCM]   DELAY: 1
+[LCM] Block: right
+[LCM]   DELAY: 0
+[LCM] Block: right.merge_crit
+[LCM]   DELAY: 0
+[LCM] Block: merge
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 0
+[LCM] Block: left
+[LCM]   LATEST: 0
+[LCM] Block: left.merge_crit
+[LCM]   LATEST: 1
+[LCM] Block: right
+[LCM]   LATEST: 1
+[LCM] Block: right.merge_crit
+[LCM]   LATEST: 0
+[LCM] Block: merge
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: left
+[LCM]   ISOLATED: 1
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: left.merge_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: right
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: right.merge_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: merge
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %y = add i32 %a, %b
+[LCM] INSERT expr 0 in left.merge_crit:   %lcm.tmp = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 0 in merge:   %z = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] PHI expr 0 in merge:   %lcm.phi = phi i32 [ %y, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] REPLACE expr 0 in merge:   %z = add i32 %a, %b  ->    %lcm.phi = phi i32 [ %y, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] Running on function: test_T4_no_redundancy
+[LCM] NEW  :   %y = add i32 %b, %c -> VN 2
+[LCM] NEW  :   %x = add i32 %a, %b -> VN 4
+[LCM] Found 2 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 00
+[LCM]   TRANSP: 11
+[LCM] Block: left
+[LCM]   ANTLOC: 01
+[LCM]   TRANSP: 11
+[LCM] Block: right
+[LCM]   ANTLOC: 10
+[LCM]   TRANSP: 11
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  00
+[LCM] Block: left
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  01
+[LCM] Block: right
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  10
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 00
+[LCM] Block: left
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 01
+[LCM] Block: right
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 10
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 00
+[LCM] Block: left
+[LCM]   EARLIEST: 01
+[LCM] Block: right
+[LCM]   EARLIEST: 10
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 00
+[LCM] Block: left
+[LCM]   DELAY: 00
+[LCM] Block: right
+[LCM]   DELAY: 00
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 00
+[LCM] Block: left
+[LCM]   LATEST: 01
+[LCM] Block: right
+[LCM]   LATEST: 10
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   00
+[LCM]   REPLACE:  00
+[LCM] Block: left
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   01
+[LCM]   REPLACE:  00
+[LCM] Block: right
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   10
+[LCM]   REPLACE:  00
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %y = add i32 %b, %c
+[LCM] INSERT+REPLACE (keep) expr 1 in left:   %x = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 1 in left: SKIP — value not available on all edges
+[LCM] Running on function: test_T5_route0_route1
+[LCM] NEW  :   %x = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %z = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %y = add i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route0
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route0.route2_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route0.route3_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route1
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: route1.route2_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route1.route3_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: route2
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: route3
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: route4
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route0
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route0.route2_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route0.route3_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route1
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route1.route2_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route1.route3_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: route2
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] Block: route3
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] Block: route4
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  0
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: route0
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: route0.route2_crit
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: route0.route3_crit
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: route1
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: route1.route2_crit
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: route1.route3_crit
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: route2
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: route3
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: route4
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: route0
+[LCM]   EARLIEST: 1
+[LCM] Block: route0.route2_crit
+[LCM]   EARLIEST: 1
+[LCM] Block: route0.route3_crit
+[LCM]   EARLIEST: 1
+[LCM] Block: route1
+[LCM]   EARLIEST: 1
+[LCM] Block: route1.route2_crit
+[LCM]   EARLIEST: 0
+[LCM] Block: route1.route3_crit
+[LCM]   EARLIEST: 0
+[LCM] Block: route2
+[LCM]   EARLIEST: 1
+[LCM] Block: route3
+[LCM]   EARLIEST: 1
+[LCM] Block: route4
+[LCM]   EARLIEST: 0
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 1
+[LCM] Block: route0
+[LCM]   DELAY: 1
+[LCM] Block: route0.route2_crit
+[LCM]   DELAY: 1
+[LCM] Block: route0.route3_crit
+[LCM]   DELAY: 1
+[LCM] Block: route1
+[LCM]   DELAY: 0
+[LCM] Block: route1.route2_crit
+[LCM]   DELAY: 0
+[LCM] Block: route1.route3_crit
+[LCM]   DELAY: 0
+[LCM] Block: route2
+[LCM]   DELAY: 0
+[LCM] Block: route3
+[LCM]   DELAY: 0
+[LCM] Block: route4
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 0
+[LCM] Block: route0
+[LCM]   LATEST: 0
+[LCM] Block: route0.route2_crit
+[LCM]   LATEST: 1
+[LCM] Block: route0.route3_crit
+[LCM]   LATEST: 1
+[LCM] Block: route1
+[LCM]   LATEST: 1
+[LCM] Block: route1.route2_crit
+[LCM]   LATEST: 0
+[LCM] Block: route1.route3_crit
+[LCM]   LATEST: 0
+[LCM] Block: route2
+[LCM]   LATEST: 1
+[LCM] Block: route3
+[LCM]   LATEST: 1
+[LCM] Block: route4
+[LCM]   LATEST: 0
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: route0
+[LCM]   ISOLATED: 1
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: route0.route2_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: route0.route3_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: route1
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: route1.route2_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: route1.route3_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: route2
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: route3
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: route4
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in route1:   %x = add i32 %a, %b
+[LCM] INSERT expr 0 in route0.route3_crit:   %lcm.tmp = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 0 in route3:   %z = add i32 %a, %b
+[LCM] INSERT expr 0 in route0.route2_crit:   %lcm.tmp1 = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 0 in route2:   %y = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in route1: SKIP — value not available on all edges
+[LCM] PHI expr 0 in route3:   %lcm.phi = phi i32 [ %x, %route1.route3_crit ], [ %lcm.tmp, %route0.route3_crit ]
+[LCM] REPLACE expr 0 in route3:   %z = add i32 %a, %b  ->    %lcm.phi = phi i32 [ %x, %route1.route3_crit ], [ %lcm.tmp, %route0.route3_crit ]
+[LCM] PHI expr 0 in route2:   %lcm.phi2 = phi i32 [ %x, %route1.route2_crit ], [ %lcm.tmp1, %route0.route2_crit ]
+[LCM] REPLACE expr 0 in route2:   %y = add i32 %a, %b  ->    %lcm.phi2 = phi i32 [ %x, %route1.route2_crit ], [ %lcm.tmp1, %route0.route2_crit ]
+[LCM] Running on function: test_T6_multiple_exprs
+[LCM] NEW  :   %ab = add i32 %a, %b -> VN 2
+[LCM] NEW  :   %ac = mul i32 %a, %c -> VN 4
+[LCM] NEW  :   %cd = add i32 %c, %d -> VN 6
+[LCM] REUSE:   %ab2 = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %cd2 = add i32 %c, %d -> VN 6
+[LCM] NEW  :   %result = add i32 %ab2, %cd2 -> VN 7
+[LCM] Found 4 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1100
+[LCM]   TRANSP: 1110
+[LCM] Block: left
+[LCM]   ANTLOC: 0000
+[LCM]   TRANSP: 1111
+[LCM] Block: left.merge_crit
+[LCM]   ANTLOC: 0000
+[LCM]   TRANSP: 1111
+[LCM] Block: right
+[LCM]   ANTLOC: 0010
+[LCM]   TRANSP: 1110
+[LCM] Block: right.merge_crit
+[LCM]   ANTLOC: 0000
+[LCM]   TRANSP: 1111
+[LCM] Block: merge
+[LCM]   ANTLOC: 1011
+[LCM]   TRANSP: 1110
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1010
+[LCM]   ANTIN:  1110
+[LCM] Block: left
+[LCM]   ANTOUT: 1011
+[LCM]   ANTIN:  1011
+[LCM] Block: left.merge_crit
+[LCM]   ANTOUT: 1011
+[LCM]   ANTIN:  1011
+[LCM] Block: right
+[LCM]   ANTOUT: 1011
+[LCM]   ANTIN:  1010
+[LCM] Block: right.merge_crit
+[LCM]   ANTOUT: 1011
+[LCM]   ANTIN:  1011
+[LCM] Block: merge
+[LCM]   ANTOUT: 0000
+[LCM]   ANTIN:  1011
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0000
+[LCM]   AVOUT: 1100
+[LCM] Block: left
+[LCM]   AVIN:  1100
+[LCM]   AVOUT: 1100
+[LCM] Block: left.merge_crit
+[LCM]   AVIN:  1100
+[LCM]   AVOUT: 1100
+[LCM] Block: right
+[LCM]   AVIN:  1100
+[LCM]   AVOUT: 1110
+[LCM] Block: right.merge_crit
+[LCM]   AVIN:  1110
+[LCM]   AVOUT: 1110
+[LCM] Block: merge
+[LCM]   AVIN:  1100
+[LCM]   AVOUT: 1111
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1110
+[LCM] Block: left
+[LCM]   EARLIEST: 0011
+[LCM] Block: left.merge_crit
+[LCM]   EARLIEST: 0011
+[LCM] Block: right
+[LCM]   EARLIEST: 0010
+[LCM] Block: right.merge_crit
+[LCM]   EARLIEST: 0001
+[LCM] Block: merge
+[LCM]   EARLIEST: 0011
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0010
+[LCM] Block: left
+[LCM]   DELAY: 0011
+[LCM] Block: left.merge_crit
+[LCM]   DELAY: 0011
+[LCM] Block: right
+[LCM]   DELAY: 0000
+[LCM] Block: right.merge_crit
+[LCM]   DELAY: 0001
+[LCM] Block: merge
+[LCM]   DELAY: 0000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1100
+[LCM] Block: left
+[LCM]   LATEST: 0000
+[LCM] Block: left.merge_crit
+[LCM]   LATEST: 0010
+[LCM] Block: right
+[LCM]   LATEST: 0010
+[LCM] Block: right.merge_crit
+[LCM]   LATEST: 0000
+[LCM] Block: merge
+[LCM]   LATEST: 0011
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   1100
+[LCM]   REPLACE:  0000
+[LCM] Block: left
+[LCM]   ISOLATED: 0010
+[LCM]   INSERT:   0000
+[LCM]   REPLACE:  0000
+[LCM] Block: left.merge_crit
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0010
+[LCM]   REPLACE:  0000
+[LCM] Block: right
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0010
+[LCM]   REPLACE:  0000
+[LCM] Block: right.merge_crit
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0000
+[LCM]   REPLACE:  0000
+[LCM] Block: merge
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0011
+[LCM]   REPLACE:  1000
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %ab = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 1 in entry:   %ac = mul i32 %a, %c
+[LCM] INSERT+REPLACE (keep) expr 2 in right:   %cd = add i32 %c, %d
+[LCM] INSERT expr 2 in left.merge_crit:   %lcm.tmp = add i32 %c, %d
+[LCM] INSERT+REPLACE (keep) expr 2 in merge:   %cd2 = add i32 %c, %d
+[LCM] INSERT+REPLACE (keep) expr 3 in merge:   %result = add i32 %ab2, %cd2
+[LCM] --- REPLACE candidates ---
+[LCM]   expr 0 in block merge INSERT=0
+[LCM] REPLACE expr 2 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 0 in merge:   %ab2 = add i32 %a, %b  ->    %ab = add i32 %a, %b
+[LCM] PHI expr 2 in merge:   %lcm.phi = phi i32 [ %cd, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] REPLACE expr 2 in merge:   %cd2 = add i32 %c, %d  ->    %lcm.phi = phi i32 [ %cd, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] REPLACE expr 3 in merge: SKIP — value not available on all edges
+[LCM] Running on function: test_T7_nested_exprs
+[LCM] NEW  :   %t1 = add i32 %b, %c -> VN 2
+[LCM] NEW  :   %t2 = add i32 %t1, %d -> VN 4
+[LCM] REUSE:   %s1 = add i32 %b, %c -> VN 2
+[LCM] REUSE:   %s2 = add i32 %s1, %d -> VN 4
+[LCM] Found 2 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 00
+[LCM]   TRANSP: 11
+[LCM] Block: left
+[LCM]   ANTLOC: 00
+[LCM]   TRANSP: 11
+[LCM] Block: left.merge_crit
+[LCM]   ANTLOC: 00
+[LCM]   TRANSP: 11
+[LCM] Block: right
+[LCM]   ANTLOC: 11
+[LCM]   TRANSP: 10
+[LCM] Block: right.merge_crit
+[LCM]   ANTLOC: 00
+[LCM]   TRANSP: 11
+[LCM] Block: merge
+[LCM]   ANTLOC: 11
+[LCM]   TRANSP: 10
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 11
+[LCM]   ANTIN:  11
+[LCM] Block: left
+[LCM]   ANTOUT: 11
+[LCM]   ANTIN:  11
+[LCM] Block: left.merge_crit
+[LCM]   ANTOUT: 11
+[LCM]   ANTIN:  11
+[LCM] Block: right
+[LCM]   ANTOUT: 11
+[LCM]   ANTIN:  11
+[LCM] Block: right.merge_crit
+[LCM]   ANTOUT: 11
+[LCM]   ANTIN:  11
+[LCM] Block: merge
+[LCM]   ANTOUT: 00
+[LCM]   ANTIN:  11
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 00
+[LCM] Block: left
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 00
+[LCM] Block: left.merge_crit
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 00
+[LCM] Block: right
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 11
+[LCM] Block: right.merge_crit
+[LCM]   AVIN:  11
+[LCM]   AVOUT: 11
+[LCM] Block: merge
+[LCM]   AVIN:  00
+[LCM]   AVOUT: 11
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 11
+[LCM] Block: left
+[LCM]   EARLIEST: 11
+[LCM] Block: left.merge_crit
+[LCM]   EARLIEST: 11
+[LCM] Block: right
+[LCM]   EARLIEST: 11
+[LCM] Block: right.merge_crit
+[LCM]   EARLIEST: 00
+[LCM] Block: merge
+[LCM]   EARLIEST: 11
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 11
+[LCM] Block: left
+[LCM]   DELAY: 11
+[LCM] Block: left.merge_crit
+[LCM]   DELAY: 11
+[LCM] Block: right
+[LCM]   DELAY: 00
+[LCM] Block: right.merge_crit
+[LCM]   DELAY: 00
+[LCM] Block: merge
+[LCM]   DELAY: 00
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 00
+[LCM] Block: left
+[LCM]   LATEST: 00
+[LCM] Block: left.merge_crit
+[LCM]   LATEST: 11
+[LCM] Block: right
+[LCM]   LATEST: 11
+[LCM] Block: right.merge_crit
+[LCM]   LATEST: 00
+[LCM] Block: merge
+[LCM]   LATEST: 11
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   00
+[LCM]   REPLACE:  00
+[LCM] Block: left
+[LCM]   ISOLATED: 11
+[LCM]   INSERT:   00
+[LCM]   REPLACE:  00
+[LCM] Block: left.merge_crit
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] Block: right
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] Block: right.merge_crit
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   00
+[LCM]   REPLACE:  00
+[LCM] Block: merge
+[LCM]   ISOLATED: 00
+[LCM]   INSERT:   11
+[LCM]   REPLACE:  00
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %t1 = add i32 %b, %c
+[LCM] INSERT+REPLACE (keep) expr 1 in right:   %t2 = add i32 %t1, %d
+[LCM] INSERT expr 0 in left.merge_crit:   %lcm.tmp = add i32 %b, %c
+[LCM] INSERT expr 1 in left.merge_crit:   %lcm.tmp1 = add i32 %lcm.tmp, %d
+[LCM] INSERT+REPLACE (keep) expr 0 in merge:   %s1 = add i32 %b, %c
+[LCM] INSERT+REPLACE (keep) expr 1 in merge:   %s2 = add i32 %s1, %d
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 1 in right: SKIP — value not available on all edges
+[LCM] PHI expr 0 in merge:   %lcm.phi = phi i32 [ %t1, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] REPLACE expr 0 in merge:   %s1 = add i32 %b, %c  ->    %lcm.phi = phi i32 [ %t1, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] PHI expr 1 in merge:   %lcm.phi2 = phi i32 [ %t2, %right.merge_crit ], [ %lcm.tmp1, %left.merge_crit ]
+[LCM] REPLACE expr 1 in merge:   %s2 = add i32 %lcm.phi, %d  ->    %lcm.phi2 = phi i32 [ %t2, %right.merge_crit ], [ %lcm.tmp1, %left.merge_crit ]
+[LCM] Running on function: test_T8_commutative
+[LCM] NEW  :   %p = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %q = add i32 %b, %a -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: left
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: right
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: merge
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: merge
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: left
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: right
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: merge
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: left
+[LCM]   EARLIEST: 0
+[LCM] Block: right
+[LCM]   EARLIEST: 0
+[LCM] Block: merge
+[LCM]   EARLIEST: 0
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0
+[LCM] Block: left
+[LCM]   DELAY: 0
+[LCM] Block: right
+[LCM]   DELAY: 0
+[LCM] Block: merge
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1
+[LCM] Block: left
+[LCM]   LATEST: 0
+[LCM] Block: right
+[LCM]   LATEST: 0
+[LCM] Block: merge
+[LCM]   LATEST: 0
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: left
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: right
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: merge
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  1
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %p = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM]   expr 0 in block merge INSERT=0
+[LCM] REPLACE expr 0 in merge:   %q = add i32 %b, %a  ->    %p = add i32 %a, %b
+[LCM] Running on function: test_T9_phi_kills_transp
+[LCM] PHI  :   %a = phi i32 [ %a0, %entry ], [ %a.next, %loop.latch ] -> VN 0
+[LCM] NEW  :   %done = icmp sge i32 %a, %n -> VN 2
+[LCM] NEW  :   %val = add i32 %a, %b -> VN 4
+[LCM] NEW  :   %a.next = add i32 %a, 1 -> VN 6
+[LCM] Found 3 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] Block: loop.header
+[LCM]   ANTLOC: 100
+[LCM]   TRANSP: 000
+[LCM] Block: loop.body
+[LCM]   ANTLOC: 011
+[LCM]   TRANSP: 111
+[LCM] Block: loop.latch
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] Block: exit
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  100
+[LCM] Block: loop.header
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  100
+[LCM] Block: loop.body
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  111
+[LCM] Block: loop.latch
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  100
+[LCM] Block: exit
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  000
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 000
+[LCM] Block: loop.header
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 100
+[LCM] Block: loop.body
+[LCM]   AVIN:  100
+[LCM]   AVOUT: 111
+[LCM] Block: loop.latch
+[LCM]   AVIN:  111
+[LCM]   AVOUT: 111
+[LCM] Block: exit
+[LCM]   AVIN:  100
+[LCM]   AVOUT: 100
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 100
+[LCM] Block: loop.header
+[LCM]   EARLIEST: 100
+[LCM] Block: loop.body
+[LCM]   EARLIEST: 011
+[LCM] Block: loop.latch
+[LCM]   EARLIEST: 000
+[LCM] Block: exit
+[LCM]   EARLIEST: 000
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 100
+[LCM] Block: loop.header
+[LCM]   DELAY: 000
+[LCM] Block: loop.body
+[LCM]   DELAY: 000
+[LCM] Block: loop.latch
+[LCM]   DELAY: 000
+[LCM] Block: exit
+[LCM]   DELAY: 000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 100
+[LCM] Block: loop.header
+[LCM]   LATEST: 100
+[LCM] Block: loop.body
+[LCM]   LATEST: 011
+[LCM] Block: loop.latch
+[LCM]   LATEST: 000
+[LCM] Block: exit
+[LCM]   LATEST: 000
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   100
+[LCM]   REPLACE:  000
+[LCM] Block: loop.header
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   100
+[LCM]   REPLACE:  000
+[LCM] Block: loop.body
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   011
+[LCM]   REPLACE:  000
+[LCM] Block: loop.latch
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   000
+[LCM]   REPLACE:  000
+[LCM] Block: exit
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   000
+[LCM]   REPLACE:  000
+[LCM] INSERT+REPLACE (keep) expr 0 in loop.header:   %done = icmp sge i32 %a, %n
+[LCM] INSERT+REPLACE (keep) expr 1 in loop.body:   %val = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 2 in loop.body:   %a.next = add i32 %a, 1
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in loop.header: SKIP — value not available on all edges
+[LCM] REPLACE expr 1 in loop.body: SKIP — value not available on all edges
+[LCM] REPLACE expr 2 in loop.body: SKIP — value not available on all edges
+[LCM] Running on function: test_T10_available_at_entry
+[LCM] NEW  :   %first = add i32 %a, %b -> VN 2
+[LCM] NEW  :   %rv = add i32 %b, 1 -> VN 4
+[LCM] NEW  :   %lv = add i32 %a, 1 -> VN 5
+[LCM] REUSE:   %second = add i32 %a, %b -> VN 2
+[LCM] NEW  :   %result = add i32 %second, %first -> VN 6
+[LCM] Found 4 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 1000
+[LCM]   TRANSP: 1110
+[LCM] Block: left
+[LCM]   ANTLOC: 0010
+[LCM]   TRANSP: 1111
+[LCM] Block: right
+[LCM]   ANTLOC: 0100
+[LCM]   TRANSP: 1111
+[LCM] Block: merge
+[LCM]   ANTLOC: 1001
+[LCM]   TRANSP: 1110
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1001
+[LCM]   ANTIN:  1000
+[LCM] Block: left
+[LCM]   ANTOUT: 1001
+[LCM]   ANTIN:  1011
+[LCM] Block: right
+[LCM]   ANTOUT: 1001
+[LCM]   ANTIN:  1101
+[LCM] Block: merge
+[LCM]   ANTOUT: 0000
+[LCM]   ANTIN:  1001
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0000
+[LCM]   AVOUT: 1000
+[LCM] Block: left
+[LCM]   AVIN:  1000
+[LCM]   AVOUT: 1010
+[LCM] Block: right
+[LCM]   AVIN:  1000
+[LCM]   AVOUT: 1100
+[LCM] Block: merge
+[LCM]   AVIN:  1000
+[LCM]   AVOUT: 1001
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1000
+[LCM] Block: left
+[LCM]   EARLIEST: 0011
+[LCM] Block: right
+[LCM]   EARLIEST: 0101
+[LCM] Block: merge
+[LCM]   EARLIEST: 0001
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 0000
+[LCM] Block: left
+[LCM]   DELAY: 0001
+[LCM] Block: right
+[LCM]   DELAY: 0001
+[LCM] Block: merge
+[LCM]   DELAY: 0000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 1000
+[LCM] Block: left
+[LCM]   LATEST: 0010
+[LCM] Block: right
+[LCM]   LATEST: 0100
+[LCM] Block: merge
+[LCM]   LATEST: 0001
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   1000
+[LCM]   REPLACE:  0000
+[LCM] Block: left
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0010
+[LCM]   REPLACE:  0000
+[LCM] Block: right
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0100
+[LCM]   REPLACE:  0000
+[LCM] Block: merge
+[LCM]   ISOLATED: 0000
+[LCM]   INSERT:   0001
+[LCM]   REPLACE:  1000
+[LCM] INSERT+REPLACE (keep) expr 0 in entry:   %first = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 1 in right:   %rv = add i32 %b, 1
+[LCM] INSERT+REPLACE (keep) expr 2 in left:   %lv = add i32 %a, 1
+[LCM] INSERT+REPLACE (keep) expr 3 in merge:   %result = add i32 %second, %first
+[LCM] --- REPLACE candidates ---
+[LCM]   expr 0 in block merge INSERT=0
+[LCM] REPLACE expr 1 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 2 in left: SKIP — value not available on all edges
+[LCM] REPLACE expr 0 in merge:   %second = add i32 %a, %b  ->    %first = add i32 %a, %b
+[LCM] REPLACE expr 3 in merge: SKIP — value not available on all edges
+[LCM] Running on function: test_T11_cmp_expr
+[LCM] NEW  :   %c1 = icmp slt i32 %a, %b -> VN 2
+[LCM] REUSE:   %c2 = icmp slt i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: left
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: left.merge_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: right
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: right.merge_crit
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: merge
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left.merge_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: right.merge_crit
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: merge
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: left
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: left.merge_crit
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: right
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: right.merge_crit
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: merge
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: left
+[LCM]   EARLIEST: 1
+[LCM] Block: left.merge_crit
+[LCM]   EARLIEST: 1
+[LCM] Block: right
+[LCM]   EARLIEST: 1
+[LCM] Block: right.merge_crit
+[LCM]   EARLIEST: 0
+[LCM] Block: merge
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 1
+[LCM] Block: left
+[LCM]   DELAY: 1
+[LCM] Block: left.merge_crit
+[LCM]   DELAY: 1
+[LCM] Block: right
+[LCM]   DELAY: 0
+[LCM] Block: right.merge_crit
+[LCM]   DELAY: 0
+[LCM] Block: merge
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 0
+[LCM] Block: left
+[LCM]   LATEST: 0
+[LCM] Block: left.merge_crit
+[LCM]   LATEST: 1
+[LCM] Block: right
+[LCM]   LATEST: 1
+[LCM] Block: right.merge_crit
+[LCM]   LATEST: 0
+[LCM] Block: merge
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: left
+[LCM]   ISOLATED: 1
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: left.merge_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: right
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: right.merge_crit
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: merge
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %c1 = icmp slt i32 %a, %b
+[LCM] INSERT expr 0 in left.merge_crit:   %lcm.tmp = icmp slt i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 0 in merge:   %c2 = icmp slt i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] PHI expr 0 in merge:   %lcm.phi = phi i1 [ %c1, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] REPLACE expr 0 in merge:   %c2 = icmp slt i32 %a, %b  ->    %lcm.phi = phi i1 [ %c1, %right.merge_crit ], [ %lcm.tmp, %left.merge_crit ]
+[LCM] Running on function: test_T12_multiple_replace_sites
+[LCM] NEW  :   %q = add i32 %a, %b -> VN 2
+[LCM] NEW  :   %rres = add i32 %q, 2 -> VN 4
+[LCM] REUSE:   %p = add i32 %a, %b -> VN 2
+[LCM] NEW  :   %lres = add i32 %p, 1 -> VN 6
+[LCM] Found 3 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 000
+[LCM]   TRANSP: 111
+[LCM] Block: left
+[LCM]   ANTLOC: 101
+[LCM]   TRANSP: 100
+[LCM] Block: right
+[LCM]   ANTLOC: 110
+[LCM]   TRANSP: 100
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 100
+[LCM]   ANTIN:  100
+[LCM] Block: left
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  101
+[LCM] Block: right
+[LCM]   ANTOUT: 000
+[LCM]   ANTIN:  110
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 000
+[LCM] Block: left
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 101
+[LCM] Block: right
+[LCM]   AVIN:  000
+[LCM]   AVOUT: 110
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 100
+[LCM] Block: left
+[LCM]   EARLIEST: 101
+[LCM] Block: right
+[LCM]   EARLIEST: 110
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 100
+[LCM] Block: left
+[LCM]   DELAY: 000
+[LCM] Block: right
+[LCM]   DELAY: 000
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 000
+[LCM] Block: left
+[LCM]   LATEST: 101
+[LCM] Block: right
+[LCM]   LATEST: 110
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   000
+[LCM]   REPLACE:  000
+[LCM] Block: left
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   101
+[LCM]   REPLACE:  000
+[LCM] Block: right
+[LCM]   ISOLATED: 000
+[LCM]   INSERT:   110
+[LCM]   REPLACE:  000
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %q = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 1 in right:   %rres = add i32 %q, 2
+[LCM] INSERT+REPLACE (keep) expr 0 in left:   %p = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 2 in left:   %lres = add i32 %p, 1
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 1 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 0 in left: SKIP — value not available on all edges
+[LCM] REPLACE expr 2 in left: SKIP — value not available on all edges
+[LCM] Running on function: test_T13_isolated
+[LCM] NEW  :   %y = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %x = add i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: left
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: right
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: left
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] Block: right
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: left
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: right
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: left
+[LCM]   EARLIEST: 1
+[LCM] Block: right
+[LCM]   EARLIEST: 1
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 1
+[LCM] Block: left
+[LCM]   DELAY: 0
+[LCM] Block: right
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 0
+[LCM] Block: left
+[LCM]   LATEST: 1
+[LCM] Block: right
+[LCM]   LATEST: 1
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: left
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: right
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] INSERT+REPLACE (keep) expr 0 in right:   %y = add i32 %a, %b
+[LCM] INSERT+REPLACE (keep) expr 0 in left:   %x = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM] REPLACE expr 0 in right: SKIP — value not available on all edges
+[LCM] REPLACE expr 0 in left: SKIP — value not available on all edges
+[LCM] Running on function: test_T14_chain_redundancy
+[LCM] NEW  :   %v1 = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %v2 = add i32 %a, %b -> VN 2
+[LCM] REUSE:   %v3 = add i32 %a, %b -> VN 2
+[LCM] Found 1 candidate expressions
+[LCM] Block: entry
+[LCM]   ANTLOC: 0
+[LCM]   TRANSP: 1
+[LCM] Block: level1
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: level2
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] Block: level3
+[LCM]   ANTLOC: 1
+[LCM]   TRANSP: 1
+[LCM] --- Anticipability ---
+[LCM] Block: entry
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: level1
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: level2
+[LCM]   ANTOUT: 1
+[LCM]   ANTIN:  1
+[LCM] Block: level3
+[LCM]   ANTOUT: 0
+[LCM]   ANTIN:  1
+[LCM] --- Availability ---
+[LCM] Block: entry
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 0
+[LCM] Block: level1
+[LCM]   AVIN:  0
+[LCM]   AVOUT: 1
+[LCM] Block: level2
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] Block: level3
+[LCM]   AVIN:  1
+[LCM]   AVOUT: 1
+[LCM] --- Earliest ---
+[LCM] Block: entry
+[LCM]   EARLIEST: 1
+[LCM] Block: level1
+[LCM]   EARLIEST: 1
+[LCM] Block: level2
+[LCM]   EARLIEST: 0
+[LCM] Block: level3
+[LCM]   EARLIEST: 0
+[LCM] --- Delay ---
+[LCM] Block: entry
+[LCM]   DELAY: 1
+[LCM] Block: level1
+[LCM]   DELAY: 0
+[LCM] Block: level2
+[LCM]   DELAY: 0
+[LCM] Block: level3
+[LCM]   DELAY: 0
+[LCM] --- Latest ---
+[LCM] Block: entry
+[LCM]   LATEST: 0
+[LCM] Block: level1
+[LCM]   LATEST: 1
+[LCM] Block: level2
+[LCM]   LATEST: 0
+[LCM] Block: level3
+[LCM]   LATEST: 0
+[LCM] --- Isolated / Insert / Replace ---
+[LCM] Block: entry
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  0
+[LCM] Block: level1
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   1
+[LCM]   REPLACE:  0
+[LCM] Block: level2
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  1
+[LCM] Block: level3
+[LCM]   ISOLATED: 0
+[LCM]   INSERT:   0
+[LCM]   REPLACE:  1
+[LCM] INSERT+REPLACE (keep) expr 0 in level1:   %v1 = add i32 %a, %b
+[LCM] --- REPLACE candidates ---
+[LCM]   expr 0 in block level2 INSERT=0
+[LCM]   expr 0 in block level3 INSERT=0
+[LCM] REPLACE expr 0 in level1: SKIP — value not available on all edges
+[LCM] REPLACE expr 0 in level2:   %v2 = add i32 %a, %b  ->    %v1 = add i32 %a, %b
+[LCM] REPLACE expr 0 in level3:   %v3 = add i32 %a, %b  ->    %v1 = add i32 %a, %b
