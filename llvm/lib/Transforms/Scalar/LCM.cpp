@@ -20,6 +20,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/PostOrderIterator.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/ADT/Statistic.h"
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Dominators.h"          // DominatorTree
@@ -109,6 +110,8 @@ struct BlockInfo {
   BitVector INSERT;   // final: LATEST & ~ISOLATED  — insert h := t here
   BitVector REPLACE;  // final: ANTLOC & (AVIN | EARLIEST) — replace t with h
 };
+
+
 
 //===----------------------------------------------------------------------===//
 // Step 1 — Critical Edge Splitting
@@ -786,7 +789,6 @@ static void insertAndReplace(
       NewInst->setName("lcm.tmp");
       NewInst->insertBefore(*BB, InsertPt);
       AvailAtExit[{BB, i}] = NewInst;
- 
       LLVM_DEBUG(dbgs() << "[LCM] INSERT expr " << i
                         << " in " << BB->getName() << ": " << *NewInst << "\n");
     }
@@ -855,7 +857,7 @@ static void insertAndReplace(
           PHI->addIncoming(V, Pred);
         Replacement = PHI;
         AvailAtExit[{BB, i}] = PHI;
-        LLVM_DEBUG(dbgs() << "[LCM] PHI expr " << i << " in "
+	LLVM_DEBUG(dbgs() << "[LCM] PHI expr " << i << " in "
                           << BB->getName() << ": " << *PHI << "\n");
       } else {
         Replacement = UniqueVal;
@@ -882,8 +884,9 @@ static void insertAndReplace(
       ToErase.push_back(OrigInst);
     }
  
-    for (Instruction *I : ToErase)
+    for (Instruction *I : ToErase){
       I->eraseFromParent();
+    }
   }
 }
 
