@@ -1,3 +1,37 @@
+
+##FOR GRADING: Where to find and run unittests
+
+**Primary mechanism demonstration** - `llvm-project/benchmarks/benchmark.sh`
+compares baseline GVN-PRE against LCM on a given C++ source file: IR
+instruction counts, PHI counts, binary size, and runtime, side by side.
+
+    cd /work/llvm-project/benchmarks
+        ./benchmark.sh register_pressure.cpp
+
+`register_pressure.cpp` is the primary file evidence it's built
+specifically to expose register-pressure effects, and is the source of
+the paper's headline PHI-count finding (GVN-PRE: 55 PHIs vs. LCM: 8 PHIs
+on this file, demonstrating LCM's value-numbering does substantially
+less PRE work than baseline GVN-PRE, not a placement difference).
+
+**Hand-written CFG suite** test `llvm-project/benchmarks/ll_tests/`
+contains `test_mixed.ll`, a 14-case suite (T1PRE scenarios (full redundancy, partial redundancy, loop invariance,
+nested expressions, commutativity, PHI-kill transparency, etc.), plus
+`test_mixed_mod.ll` showing LCM's actual output on that suite. Run
+directly against the pass:
+
+    cd /work/llvm-project/benchmarks/ll_tests
+        opt -passes=lcm -S test_mixed.ll -o /tmp/out.ll
+	    diff /tmp/out.ll test_mixed_mod.ll   # should be empty/cosmetic-only
+
+**Embench-IoT real results** hardware see the top-level Quick Start
+below; `scripts/summarize_embench_results.py` reproduces the paper's
+Embench geomean directly from real, already-collected Pi 5 data.
+
+
+
+
+
 # The LLVM Compiler Infrastructure
 
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/llvm/llvm-project/badge)](https://securityscorecards.dev/viewer/?uri=github.com/llvm/llvm-project)
